@@ -165,7 +165,7 @@ export default function AuthCard({ onLoginSuccess }) {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSendOTP = async (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setGeneralError('');
     setGeneralSuccess('');
@@ -178,87 +178,23 @@ export default function AuthCard({ onLoginSuccess }) {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/otp`, {
+      const regRes = await fetch(`${API_URL}/reg`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ num: regForm.mob })
+        body: JSON.stringify(regForm)
       });
-      const data = await response.json();
-      if (data.success) {
-        setOtpSent(true);
-        setGeneralSuccess('OTP Sent successfully to ' + regForm.mob);
-        if (data.otp) {
-          setTestOtpHelper(data.otp);
-        }
+      const regData = await regRes.json();
+
+      if (regData.success) {
+        setGeneralSuccess('Registration Successful!');
+        setTimeout(() => {
+          onLoginSuccess(regData.user);
+        }, 1000);
       } else {
-        setGeneralError(data.error || 'Failed to send OTP');
+        setGeneralError(regData.error || 'Registration failed');
       }
     } catch (err) {
       setGeneralError('Network error. Make sure the backend server is running.');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleOtpChange = (index, value) => {
-    if (isNaN(value)) return;
-    const newOtp = [...otpDigits];
-    newOtp[index] = value;
-    setOtpDigits(newOtp);
-
-    if (value !== '' && index < 3) {
-      otpRefs[index + 1].current.focus();
-    }
-  };
-
-  const handleOtpKeyDown = (index, e) => {
-    if (e.key === 'Backspace' && otpDigits[index] === '' && index > 0) {
-      otpRefs[index - 1].current.focus();
-    }
-  };
-
-  const handleVerifyAndRegister = async (e) => {
-    e.preventDefault();
-    setGeneralError('');
-    setGeneralSuccess('');
-
-    const otpCode = otpDigits.join('');
-    if (otpCode.length !== 4) {
-      setGeneralError('Enter complete 4-digit OTP');
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const verifyRes = await fetch(`${API_URL}/verify`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ verify: otpCode, num: regForm.mob })
-      });
-      const isOtpValid = await verifyRes.json();
-
-      if (isOtpValid === 1) {
-        const regRes = await fetch(`${API_URL}/reg`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(regForm)
-        });
-        const regData = await regRes.json();
-
-        if (regData.success) {
-          setGeneralSuccess('Registration Successful!');
-          setTimeout(() => {
-            onLoginSuccess(regData.user);
-          }, 1000);
-        } else {
-          setGeneralError(regData.error || 'Registration failed');
-        }
-      } else {
-        setGeneralError('Invalid OTP Code');
-      }
-    } catch (err) {
-      setGeneralError('An error occurred during verification');
       console.error(err);
     } finally {
       setLoading(false);
@@ -511,42 +447,15 @@ export default function AuthCard({ onLoginSuccess }) {
             )}
           </div>
 
-          {(!isAlreadyRegistered && !otpSent) && (
+          {!isAlreadyRegistered && (
             <button 
               className="otp-btn" 
-              id="register_send_otp" 
-              onClick={handleSendOTP} 
+              id="register_submit" 
+              onClick={handleRegisterSubmit} 
               disabled={loading}
             >
-              {loading ? 'Sending...' : 'Send OTP'}
+              {loading ? 'Submitting...' : 'Register'}
             </button>
-          )}
-
-          {otpSent && (
-            <div id="reg_otp_box">
-              {otpDigits.map((digit, idx) => (
-                <input 
-                  key={idx}
-                  ref={otpRefs[idx]}
-                  type="text"
-                  maxLength="1"
-                  name="verify[]"
-                  className="otp"
-                  value={digit}
-                  onChange={(e) => handleOtpChange(idx, e.target.value)}
-                  onKeyDown={(e) => handleOtpKeyDown(idx, e)}
-                />
-              ))}
-              <button 
-                className="otp-btn" 
-                id="register_verify"
-                style={{ width: 'auto', padding: '12px 16px', margin: 0 }}
-                onClick={handleVerifyAndRegister}
-                disabled={loading}
-              >
-                {loading ? 'Verifying...' : 'Verify & Register'}
-              </button>
-            </div>
           )}
         </form>
       )}
