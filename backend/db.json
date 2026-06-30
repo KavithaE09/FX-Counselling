@@ -1,0 +1,443 @@
+{
+  "users": [
+    {
+      "name": "E Kavitha",
+      "mob": "8015498150",
+      "caste": "BC",
+      "email": "kavithae704@gmail.com",
+      "dist": "Tirunelveli",
+      "board": "STATE BOARD-MATRIC",
+      "schlor": "general",
+      "phy": 80,
+      "chem": 90,
+      "math": 98,
+      "com": 183,
+      "rank": "Not Assigned",
+      "registeredAt": "2026-06-26T15:41:30.387Z"
+    },
+    {
+      "name": "Dheepti",
+      "mob": "6383632771",
+      "caste": "BC",
+      "email": "kavithae704@gmail.com",
+      "dist": "Thoothukudi",
+      "board": "CBSE",
+      "schlor": "general",
+      "phy": 80,
+      "chem": 60,
+      "math": 50,
+      "com": 120,
+      "rank": "Not Assigned",
+      "registeredAt": "2026-06-27T14:25:35.576Z"
+    },
+    {
+      "name": "Mari selvan",
+      "mob": "9999999999",
+      "caste": "BC",
+      "email": "kavithae704@gmail.com",
+      "dist": "Tirunelveli",
+      "board": "STATE BOARD-MATRIC",
+      "schlor": "general",
+      "phy": 67,
+      "chem": 56,
+      "math": 45,
+      "com": 106.5,
+      "rank": "Not Assigned",
+      "registeredAt": "2026-06-27T16:08:54.337Z"
+    }
+  ],
+  "colleges": [
+    {
+      "id": "CEG001",
+      "name": "College of Engineering, Guindy (CEG), Anna University",
+      "code": "0001",
+      "district": "Chennai",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 199.5,
+            "BC": 198.5,
+            "BCM": 198,
+            "MBC": 197.5,
+            "SC": 192,
+            "SCA": 190.5,
+            "ST": 188
+          }
+        },
+        {
+          "name": "Electronics and Communication (ECE)",
+          "cutoffs": {
+            "OC": 198.5,
+            "BC": 197.5,
+            "BCM": 197,
+            "MBC": 196,
+            "SC": 189.5,
+            "SCA": 187,
+            "ST": 184
+          }
+        },
+        {
+          "name": "Information Technology (IT)",
+          "cutoffs": {
+            "OC": 198,
+            "BC": 197,
+            "BCM": 196.5,
+            "MBC": 195.5,
+            "SC": 188,
+            "SCA": 185,
+            "ST": 182
+          }
+        },
+        {
+          "name": "Electrical and Electronics (EEE)",
+          "cutoffs": {
+            "OC": 196.5,
+            "BC": 195,
+            "BCM": 194,
+            "MBC": 193,
+            "SC": 185,
+            "SCA": 182,
+            "ST": 178.5
+          }
+        },
+        {
+          "name": "Mechanical Engineering",
+          "cutoffs": {
+            "OC": 194,
+            "BC": 191.5,
+            "BCM": 190,
+            "MBC": 189.5,
+            "SC": 180,
+            "SCA": 176.5,
+            "ST": 172
+          }
+        }
+      ]
+    },
+    {
+      "id": "MIT002",
+      "name": "Madras Institute of Technology (MIT), Chromepet",
+      "code": "0002",
+      "district": "Chennai",
+      "courses": [
+        {
+          "name": "Aeronautical Engineering",
+          "cutoffs": {
+            "OC": 197.5,
+            "BC": 196,
+            "BCM": 195.5,
+            "MBC": 194.5,
+            "SC": 187,
+            "SCA": 184,
+            "ST": 180
+          }
+        },
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 198.5,
+            "BC": 197.5,
+            "BCM": 196.8,
+            "MBC": 196,
+            "SC": 190,
+            "SCA": 188,
+            "ST": 185
+          }
+        },
+        {
+          "name": "Information Technology (IT)",
+          "cutoffs": {
+            "OC": 197.5,
+            "BC": 196.5,
+            "BCM": 196,
+            "MBC": 194.8,
+            "SC": 187.5,
+            "SCA": 184.5,
+            "ST": 181
+          }
+        }
+      ]
+    },
+    {
+      "id": "PSG003",
+      "name": "PSG College of Technology, Peelamedu",
+      "code": "2006",
+      "district": "Coimbatore",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 198,
+            "BC": 197,
+            "BCM": 196,
+            "MBC": 195,
+            "SC": 188,
+            "SCA": 185.5,
+            "ST": 180
+          }
+        },
+        {
+          "name": "Electronics and Communication (ECE)",
+          "cutoffs": {
+            "OC": 197,
+            "BC": 195.8,
+            "BCM": 195,
+            "MBC": 194,
+            "SC": 185,
+            "SCA": 182,
+            "ST": 177
+          }
+        },
+        {
+          "name": "Mechanical Engineering (Sandwich)",
+          "cutoffs": {
+            "OC": 193,
+            "BC": 190,
+            "BCM": 188,
+            "MBC": 187,
+            "SC": 175,
+            "SCA": 172,
+            "ST": 168
+          }
+        }
+      ]
+    },
+    {
+      "id": "SSN004",
+      "name": "SSN College of Engineering, Kalavakkam",
+      "code": "1315",
+      "district": "Chengalpattu",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 197.5,
+            "BC": 196.5,
+            "BCM": 195.5,
+            "MBC": 194.5,
+            "SC": 186,
+            "SCA": 183,
+            "ST": 178
+          }
+        },
+        {
+          "name": "Information Technology (IT)",
+          "cutoffs": {
+            "OC": 196.8,
+            "BC": 195.5,
+            "BCM": 194,
+            "MBC": 193,
+            "SC": 184,
+            "SCA": 180,
+            "ST": 175
+          }
+        },
+        {
+          "name": "Biomedical Engineering",
+          "cutoffs": {
+            "OC": 192.5,
+            "BC": 189,
+            "BCM": 187,
+            "MBC": 186,
+            "SC": 170,
+            "SCA": 165,
+            "ST": 160
+          }
+        }
+      ]
+    },
+    {
+      "id": "CIT005",
+      "name": "Coimbatore Institute of Technology (CIT)",
+      "code": "2007",
+      "district": "Coimbatore",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 196,
+            "BC": 194.5,
+            "BCM": 193,
+            "MBC": 192.5,
+            "SC": 180,
+            "SCA": 177,
+            "ST": 172
+          }
+        },
+        {
+          "name": "Chemical Engineering",
+          "cutoffs": {
+            "OC": 189,
+            "BC": 184,
+            "BCM": 181.5,
+            "MBC": 180,
+            "SC": 162,
+            "SCA": 158,
+            "ST": 152
+          }
+        }
+      ]
+    },
+    {
+      "id": "TCE006",
+      "name": "Thiagarajar College of Engineering (TCE), Thiruparankundram",
+      "code": "5008",
+      "district": "Madurai",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 197,
+            "BC": 196,
+            "BCM": 195,
+            "MBC": 194,
+            "SC": 185,
+            "SCA": 182,
+            "ST": 178
+          }
+        },
+        {
+          "name": "Civil Engineering",
+          "cutoffs": {
+            "OC": 185,
+            "BC": 179,
+            "BCM": 177,
+            "MBC": 175,
+            "SC": 155,
+            "SCA": 150,
+            "ST": 145
+          }
+        }
+      ]
+    },
+    {
+      "id": "GCT007",
+      "name": "Government College of Technology (GCT)",
+      "code": "2005",
+      "district": "Coimbatore",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 195.5,
+            "BC": 194,
+            "BCM": 192.5,
+            "MBC": 192,
+            "SC": 180,
+            "SCA": 176,
+            "ST": 172
+          }
+        },
+        {
+          "name": "Information Technology (IT)",
+          "cutoffs": {
+            "OC": 194.5,
+            "BC": 193,
+            "BCM": 191,
+            "MBC": 190.5,
+            "SC": 178,
+            "SCA": 174,
+            "ST": 170
+          }
+        }
+      ]
+    },
+    {
+      "id": "SVCE008",
+      "name": "Sri Venkateswara College of Engineering (SVCE)",
+      "code": "1219",
+      "district": "Kancheepuram",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 193,
+            "BC": 191,
+            "BCM": 189,
+            "MBC": 188.5,
+            "SC": 170,
+            "SCA": 165,
+            "ST": 160
+          }
+        },
+        {
+          "name": "Marine Engineering",
+          "cutoffs": {
+            "OC": 180,
+            "BC": 172,
+            "BCM": 168,
+            "MBC": 165,
+            "SC": 145,
+            "SCA": 140,
+            "ST": 135
+          }
+        }
+      ]
+    },
+    {
+      "id": "KCT009",
+      "name": "Kumaraguru College of Technology (KCT)",
+      "code": "2712",
+      "district": "Coimbatore",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 195,
+            "BC": 193.5,
+            "BCM": 192,
+            "MBC": 191.5,
+            "SC": 178,
+            "SCA": 175,
+            "ST": 170
+          }
+        },
+        {
+          "name": "Electronics and Instrumentation (EIE)",
+          "cutoffs": {
+            "OC": 189,
+            "BC": 184,
+            "BCM": 181,
+            "MBC": 180,
+            "SC": 160,
+            "SCA": 155,
+            "ST": 150
+          }
+        }
+      ]
+    },
+    {
+      "id": "REC010",
+      "name": "Rajalakshmi Engineering College (REC)",
+      "code": "1211",
+      "district": "Kancheepuram",
+      "courses": [
+        {
+          "name": "Computer Science and Engineering (CSE)",
+          "cutoffs": {
+            "OC": 192.5,
+            "BC": 190.5,
+            "BCM": 188,
+            "MBC": 187.5,
+            "SC": 168,
+            "SCA": 163,
+            "ST": 158
+          }
+        },
+        {
+          "name": "Artificial Intelligence and Data Science (AI&DS)",
+          "cutoffs": {
+            "OC": 191,
+            "BC": 188.5,
+            "BCM": 186,
+            "MBC": 185,
+            "SC": 164,
+            "SCA": 160,
+            "ST": 155
+          }
+        }
+      ]
+    }
+  ]
+}
