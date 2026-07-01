@@ -66,15 +66,14 @@ export default function AuthCard({ onLoginSuccess }) {
       const exists = await response.json();
       if (exists) {
         setIsAlreadyRegistered(true);
-        setRegErrors(prev => ({ ...prev, mob: 'You have Already Registered, can login now.' }));
       } else {
         setIsAlreadyRegistered(false);
-        setRegErrors(prev => {
-          const clone = { ...prev };
-          delete clone.mob;
-          return clone;
-        });
       }
+      setRegErrors(prev => {
+        const clone = { ...prev };
+        delete clone.mob;
+        return clone;
+      });
     } catch (err) {
       console.error('Error checking membership:', err);
     }
@@ -171,10 +170,6 @@ export default function AuthCard({ onLoginSuccess }) {
     setGeneralSuccess('');
     
     if (!validateRegForm()) return;
-    if (isAlreadyRegistered) {
-      setGeneralError('Mobile number is already registered. Please go to Login.');
-      return;
-    }
 
     setLoading(true);
     try {
@@ -441,22 +436,20 @@ export default function AuthCard({ onLoginSuccess }) {
             {regErrors.mob && <span className="field-error">{regErrors.mob}</span>}
             
             {isAlreadyRegistered && (
-              <div className="alert alert-danger" id="inval" style={{ marginTop: '10px' }}>
-                You have Already Registered, can login now.
+              <div className="alert alert-success" id="inval" style={{ marginTop: '10px', background: '#e0f2fe', color: '#0369a1', borderColor: '#bae6fd' }}>
+                This mobile number is already registered. Submitting will update your cutoff profile details.
               </div>
             )}
           </div>
 
-          {!isAlreadyRegistered && (
-            <button 
-              className="otp-btn" 
-              id="register_submit" 
-              onClick={handleRegisterSubmit} 
-              disabled={loading}
-            >
-              {loading ? 'Submitting...' : 'Register'}
-            </button>
-          )}
+          <button 
+            className="otp-btn" 
+            id="register_submit" 
+            onClick={handleRegisterSubmit} 
+            disabled={loading}
+          >
+            {loading ? 'Submitting...' : isAlreadyRegistered ? 'Update & Login' : 'Register'}
+          </button>
         </form>
       )}
     </div>
