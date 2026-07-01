@@ -295,6 +295,7 @@ export default function CollegeFinder({ user, onLogout }) {
   const [viewMode, setViewMode] = useState('cutoff'); // 'cutoff' | 'rank'
 
   const [customCutoff, setCustomCutoff] = useState(parseFloat(user.com) || 0);
+  const [customRank, setCustomRank] = useState(parseInt(user.rank) || '');
   const [customName, setCustomName] = useState(user.name || '');
   const [customCommunity, setCustomCommunity] = useState(user.caste || 'OC');
 
@@ -302,6 +303,16 @@ export default function CollegeFinder({ user, onLogout }) {
 
   // Determine eligibility per branch
   const getEligibility = (branch) => {
+    if (viewMode === 'rank') {
+      // In rank mode: lower rank number = better rank, eligible if userRank <= branch closing rank
+      const branchRank = branch.ranks?.[selectedYear]?.[userCommunity];
+      if (branchRank == null || customRank === '') return null;
+      const uRank = parseInt(customRank);
+      if (uRank <= branchRank) return 'eligible';
+      if (uRank <= branchRank * 1.1) return 'borderline';
+      return 'not-eligible';
+    }
+    // Cutoff mode
     const cutoffData = branch.cutoffs[selectedYear]?.[userCommunity];
     if (!cutoffData || cutoffData.min == null) return null;
     const required = cutoffData.min;
@@ -388,6 +399,36 @@ export default function CollegeFinder({ user, onLogout }) {
                     color: '#fff',
                     fontWeight: '800',
                     fontSize: '16px',
+                    textAlign: 'center',
+                    margin: '0',
+                    outline: 'none'
+                  }}
+                />
+              </div>
+            </div>
+            <div className="fx-banner-row">
+              <span className="fx-banner-label">Your Rank</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <input
+                  type="number"
+                  min="1"
+                  max="300000"
+                  placeholder="e.g. 51306"
+                  value={customRank}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value);
+                    setCustomRank(isNaN(val) ? '' : val);
+                  }}
+                  className="fx-rank-input"
+                  style={{
+                    width: '100px',
+                    padding: '4px 8px',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    background: 'rgba(255,255,255,0.15)',
+                    color: '#fff',
+                    fontWeight: '800',
+                    fontSize: '14px',
                     textAlign: 'center',
                     margin: '0',
                     outline: 'none'
@@ -571,11 +612,12 @@ export default function CollegeFinder({ user, onLogout }) {
                         const rankVal = branch.ranks?.[selectedYear]?.[c];
                         const isUser = c === userCommunity;
                         const isEligible = isUser && elig === 'eligible';
+                        const isBorderline = isUser && elig === 'borderline';
 
                         return (
                           <td
                             key={c}
-                            className={`fx-td-val ${isUser ? 'fx-user-col' : ''} ${isEligible ? 'fx-eligible-cell' : ''}`}
+                            className={`fx-td-val ${isUser ? 'fx-user-col' : ''} ${isEligible ? 'fx-eligible-cell' : ''} ${isBorderline && !isEligible ? 'fx-borderline-cell' : ''}`}
                           >
                             {formatRank(rankVal)}
                           </td>
@@ -596,6 +638,12 @@ export default function CollegeFinder({ user, onLogout }) {
           <span className="fx-summ-label">Your Cutoff</span>
           <span className="fx-summ-val">{customCutoff}</span>
         </div>
+        {customRank !== '' && (
+          <div className="fx-summary-card">
+            <span className="fx-summ-label">Your Rank</span>
+            <span className="fx-summ-val" style={{ color: '#7c3aed' }}>{parseInt(customRank).toLocaleString('en-IN')}</span>
+          </div>
+        )}
         <div className="fx-summary-card">
           <span className="fx-summ-label">Community</span>
           <span className="fx-summ-val" style={{ color: COMMUNITY_COLORS[userCommunity] }}>{userCommunity}</span>
@@ -604,6 +652,10 @@ export default function CollegeFinder({ user, onLogout }) {
           <span className="fx-summ-label">Eligible Branches</span>
           <span className="fx-summ-val">
             {FX_DATA.branches.filter(b => {
+              if (viewMode === 'rank') {
+                const branchRank = b.ranks?.[selectedYear]?.[userCommunity];
+                return branchRank != null && customRank !== '' && parseInt(customRank) <= branchRank;
+              }
               const req = b.cutoffs[selectedYear]?.[userCommunity]?.min;
               return req != null && customCutoff >= req;
             }).length} / {FX_DATA.branches.length}
@@ -612,7 +664,7 @@ export default function CollegeFinder({ user, onLogout }) {
         <div className="fx-summary-card">
           <span className="fx-summ-label">Viewing</span>
           <span className="fx-summ-val">
-            {viewMode === 'cutoff' ? `Cutoff Marks — ${selectedYear}` : `Ranks — ${selectedYear}`}
+            {viewMode === 'cutoff' ? `Cutoff — ${selectedYear}` : `Ranks — ${selectedYear}`}
           </span>
         </div>
       </div>
